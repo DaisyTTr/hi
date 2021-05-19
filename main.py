@@ -210,4 +210,22 @@ def cancel():
     ad7 = tk.Button(master=cancel_schedul, width=25, text="Confirm", command=cancel_back).grid(row=2, column=1)
 def admin_main():
     def switch_admin():
-        
+        admin_main_schedule.destroy()
+        login()
+
+    admin_main_schedule = tk.Tk()
+    admin_main_schedule.title("Admin control panel")
+    tk.Button(master=admin_main_schedule, text="View detail of flight ", command=view_flight).grid(row=1,column=1)
+    tk.Button(master=admin_main_schedule, text="Switch user ", command=switch_user_admin).grid(row=2,column=1)
+    tk.Button(master=admin_main_schedule, text="Update/add flight ", command=update).grid(row=3,column=1)
+    tk.Button(master=admin_main_schedule, text="Cancel flight ", command=cancel).grid(row=4,column=1)
+    tk.Button(master=admin_main_schedule, text="Manage user ", command=manage_user).grid(row=5,column=1)
+    tk.Button(master=admin_main_schedule, text="Exit program ", command=exit).grid(row=6,column=1)
+
+def manager_main():
+    def switch_user_manager():
+        manager_main_schedule.destroy()
+        login()
+    manager_main_schedule = tk.Tk()
+    img = tk.PhotoImage(file="jet.jpg")
+    ask = tk.Label
