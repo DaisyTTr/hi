@@ -1,10 +1,24 @@
 import tkinter as tk
+import datetime
+from typing import MutableSequence
 
 admin={}
 manager={}
 standard={}
 schedule={}
 cancel={}
+
+def reminder():
+    now = datetime.datetime.now()
+    for i in schedule:
+        l = schedule[i][0].split(":")
+        time = now.replace(hour=int(l[0]), minute=int(l[1]), second=0, microsecond=0)
+        if now > time:
+            reminder_schedule = tk.Tk()
+            reminder_schedule.title("Reminder")
+            tk.Label(master=reminder_schedule,text=("Flight number"+i+"Not updated").grid(row=0, column=0)
+            reminder_schedule.mainloop()
+
 def delete_user():
     def delete_user_back():
         user = user_name()
@@ -39,6 +53,7 @@ def delete_user():
     user_name = tk.Entry(master=delete_user)
     user_name.grid(row=1, column=1)
     ad2= tk.tk.Button(master=delete_user, text="Confirm delete", width=25, command=deluserback).grid(row=1, column=2)
+
 def manage_user():
     def add_user():
         def add_admin:
@@ -67,6 +82,7 @@ def manage_user():
             user_name = tk.Entry(master=system)
             user_name.grid(row=1, column=1)
             ad3 = tk.Button(master=system, text="Confirm", width=25, command=admin_user_name)grid(row=1, column=3)
+
         def add_manager():
             def manager_user_name():
                 def manager_username_back();
@@ -93,6 +109,7 @@ def manage_user():
             user_name = tk.Entry(master=system)
             user_name.grid(row=1, column=1)
             ad3 = tk.Button(master=system, text="Confirm", width=25, command=manager_user_name)grid(row=1, column=3)
+
         def add_standard():
             def standard_user_name():
                 def standard_username_back():
@@ -124,6 +141,7 @@ def manage_user():
         tk.Button(master=add_user,width=25,text="Add admin", command=add_admin).grid(row=1, column=1)
         tk.Button(master=add_user,width=25,text="Add manager", command=add_manager).grid(row=1, column=1)
         tk.Button(master=add_user,width=25,text="Add standard", command=add_standard).grid(row=1, column=1)
+
     def display_user():
         view_schedule = tk.Tk()
         view_scheduled.title("View user"
@@ -142,6 +160,7 @@ def manage_user():
         for i in standard;
             d += 1
             tk.Label(master=view_schedule,text=("-------",i)).grid(row=d, column=0)
+
     def delete_user():
         def delete_back_user():
             user = user_name.get()
@@ -179,7 +198,14 @@ def manage_user():
     tk.Button(master=manage_user_schedule, text="Add user",width=25, command=add_user).grid(row=1, column=0)
     tk.Button(master=manage_user_schedule, text="Delete user",width=25, command=delete_user).grid(row=2, column=0)
     tk.Button(master=manage_user_schedule, text="View user",width=25, command=view_user).grid(row=3, column=0)
-def update
+
+def update():
+    schedule_update = tk.Tk()
+    schedule_update.title("Update flight")
+    tk.Label(master=schedule_update, text="Enter flight numner").grid(row=1, column=0)
+    departure = tk.Entry(master=schedule_update)
+
+
 def cancel():
     def cancel_back():
         flight = flight_numb.get()
@@ -208,6 +234,7 @@ def cancel():
     flight_numb = tk.Entry(master=cancel_schedul)
     flight_numb.grid(row=1, column=1)
     ad7 = tk.Button(master=cancel_schedul, width=25, text="Confirm", command=cancel_back).grid(row=2, column=1)
+
 def admin_main():
     def switch_admin():
         admin_main_schedule.destroy()
@@ -237,6 +264,7 @@ def manager_main():
     tk.Button(master=manager_main_schedule, text="Cancel flight ", command=cancel).grid(row=4,column=1)
     tk.Button(master=manager_main_schedule, text="Exit program ", command=exit).grid(row=5,column=1)
     manager_main_schedule.mainloop()
+
 def view():
     e = 0
     f = 1
@@ -267,6 +295,7 @@ def standard_main():
     img = tk.PhotoImage(file="jet.jpg")
     rp = tk,Label(master=standard_main_schedule, image=img).grid(row=1, column=0)
     standard_main_schedule.mainloop()
+
 def login():
     def user_verification():
         def password_verification():
