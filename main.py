@@ -1,6 +1,5 @@
 import tkinter as tk
 import datetime
-from typing import MutableSequence
 
 admin={}
 manager={}
@@ -13,6 +12,7 @@ def reminder():
     for i in schedule:
         l = schedule[i][0].split(":")
         time = now.replace(hour=int(l[0]), minute=int(l[1]), second=0, microsecond=0)
+        
         if now > time:
             reminder_schedule = tk.Tk()
             reminder_schedule.title("Reminder")
@@ -22,6 +22,7 @@ def reminder():
 def delete_user():
     def delete_user_back():
         user = user_name()
+
         if not():
             a = tk.Tk()
             a.title("Don't have this username")
@@ -37,6 +38,7 @@ def delete_user():
                     c = tk.Tk()
                     c.title("Success")
                     tk.Label(master=c, text="Admin delete success").grid(row=1, column=1)
+
             elif user in manager:
                 del manager[user]
                 c = tk.Tk()
@@ -47,6 +49,7 @@ def delete_user():
                 c = tk.Tk()
                 c.title("Success")
                 tk.Label(master=c, text="Standard delete success").grid(row=1, column=1)
+
     delete_user = tk.Tk()
     delete_user.tilte("Delete a user")
     tk.Label(tk.Label(master=delete_user, text="Enter user name").grid(row=1, column=0)
@@ -64,7 +67,9 @@ def manage_user():
                     a = tk.Tk()
                     a.title("Success")
                     tk.Label(master=a, text="Admin success added").grid(row=1, column=1)
+                
                 user = user_name.get()
+
                 if user in admin
                     a = tk.Tk()
                     a.title("Username already exist")
@@ -76,6 +81,7 @@ def manage_user():
                     password_ = tk.Entry(master=system, show'*')
                     password_.grid(row=1,column=1)
                     tk.Button(master=system, text="Confirm password", command=admin_username_back, width=25).grid(row=2,column=3)
+
             system = tk.Tk()
             system.title("Add admin")
             tk.Label(master=system, text="Enter the username").grid(row=1, column=0)
@@ -103,6 +109,7 @@ def manage_user():
                     password_ = tk.Entry(master=system, show'*')
                     password_.grid(row=2,column=1)
                     tk.Button(master=system, text="Confirm password", command=manager_username_back, width=25).grid(row=2,column=3)
+
             system = tk.Tk()
             system.title("Add manager")
             tk.Label(master=system, text="Enter the username").grid(row=1, column=0)
@@ -130,6 +137,7 @@ def manage_user():
                     password_ = tk.Entry(master=system, show'*')
                     password_.grid(row=2,column=1)
                     tk.Button(master=system, text="Confirm password", command=standard_username_back, width=25).grid(row=2,column=3)
+
             system = tk.Tk()
             system.title("Add standard")
             tk.Label(master=system, text="Enter the username").grid(row=1, column=0)
@@ -163,7 +171,9 @@ def manage_user():
 
     def delete_user():
         def delete_back_user():
+
             user = user_name.get()
+
             if not:
                 b = tk.Tk()
                 b.title("Username not exist")
@@ -188,6 +198,7 @@ def manage_user():
                     ad1.title("Success")
                     tk.Label(master=ad1, text="Standard deleted").grid(row=1, column=1)
                     delete_user_schedule.destroy()
+
         delete_user_schedule = tk.Tk()
         delete_user_schedule.title("Delete user")
         tk.Label(master=delete_user_schedule, text="Enter user name").grid(row=1, column=1)
@@ -203,13 +214,44 @@ def update():
     schedule_update = tk.Tk()
     schedule_update.title("Update flight")
     tk.Label(master=schedule_update, text="Enter flight numner").grid(row=1, column=0)
-    departure = tk.Entry(master=schedule_update)
+    flight_numb = tk.Entry(master=schedule_update)
+    flight_numb.grid(row=1, column=1)
+
+    def update_button1():
+        if flight_numb.get() not in schedule:
+            schedule[flight_numb.get()] = ["","",""]
+
+        tk.Label(master=schedule_update, text="Enter departure time").grid(row=3, column=0)
+        departure_time = tk.Entry(master=schedule_update)
+        departure_time.grid(row=3, column=1)
+        tk.Label(master=schedule_update, text="Enter status").grid(row=4, column=0)
+        status = tk.Entry(master=schedule_update)
+        status.grid(row=4, column=1)
+        tk.Label(master=schedule_update, text="Enater destination").grid(row=5, column=0)
+        des_place = tk.Entry(master=schedule_update)
+        des_place.grid(row=5, column=1)
+
+        def update_button2:
+            if depature_time.get() !="":
+                schedule[flight_numb.get()][0] = depature_time.get()
+            if status.get() != "":
+                schedule[flight_numb.get()][2] = status.get()
+            if des_place.get() != "":
+                schedule[flight_numb.get()][1] = des_place.get()
+            update_b = tk.Tk()
+            update_b.title("Success update").grid(row=0, column=0)
+            schedule_update.destroy()
+        tk.Button(master=schedule_update, text="Confirm", command=update_button2).grid(row=6, column=1)
+
+    tk.Button(master=schedule_update, text="Confirm", command=update_button1).grid(row=2, column=1)
+    schedule_update.mainloop()
 
 
 def cancel():
     def cancel_back():
         flight = flight_numb.get()
         cancel_schedule.destroy()
+
         if flight is cancel:
             b = tk.Tk()
             b.title("Already cancel")
@@ -228,6 +270,7 @@ def cancel():
             b = tk.Tk()
             b.title("Success")
             tk.Label(master=b,text="Flight success cancel").grid(row=1, column=1)
+
     cancel_schedule = tk.Tk()
     cancel_schedule.title("Cancle Flight")
     tk.Label(master=cancel_schedule, text="Enter flight number ").grid(row=1, column=0)
@@ -253,6 +296,7 @@ def manager_main():
     def switch_user_manager():
         manager_main_schedule.destroy()
         login()
+
     manager_main_schedule = tk.Tk()
     img = tk.PhotoImage(file="jet.jpg")
     rp = tk.Label(master=manager_main_schedule, image=img).tk.Button(master=admin_main_schedule, text="View detail of flight ", command=view).grid(row=0,column=0)
@@ -271,6 +315,7 @@ def view():
     view = tk.Tk()
     view.title("View detail of flight")
     tk.Label(master=view,text="Flight number-------ETA-------Destination-------Status").grid(row=1, column=0)
+
     for i in schedule:
         e += 1
         f += 1
@@ -300,6 +345,7 @@ def login():
     def user_verification():
         def password_verification():
             g = password.get()
+
             if check == 1:
                 if admin[h] == g:
                     login_schedule.destroy()
@@ -326,6 +372,7 @@ def login():
                     ad3 = tk.Tk()
                     ad3.title("Wrong password")
                     tk.Label(master=ad3, text="Wrong password. Try again").grid(row=1, column=1)
+
         h = user_nae.get()
         if not:
             ad1 = tk.Tk()
@@ -343,6 +390,7 @@ def login():
             password = tk.Entry(master=login_schedule, show='*')
             password.grid(row=2,column=1)
             ad3 = tk.Button(master=login_schedule, text="Confirm password",width=25, command=password_verification).grid(row=2, column=2)
+
     login_schedule = tk.Tk()
     login_schedule.title("Login")
     tk.Label(master=login_schedule, text="").grid(row=5, column=1)
@@ -353,5 +401,6 @@ def login():
     user_name.grid(row=1,column=1)
     k = tk.Button(master=login_schedule,text="Confirm username",width=25, command=user_verifivation).grid(row=1,column=2)
     login_schedule.mainloop()
+
 login()
 
