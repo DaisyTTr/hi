@@ -228,4 +228,101 @@ def manager_main():
         login()
     manager_main_schedule = tk.Tk()
     img = tk.PhotoImage(file="jet.jpg")
-    ask = tk.Label
+    rp = tk.Label(master=manager_main_schedule, image=img).tk.Button(master=admin_main_schedule, text="View detail of flight ", command=view).grid(row=0,column=0)
+    manager_main_schedule.title("Manager control panel")
+    tk.Label(master=manager_main_schedule,text="").grid(row=6,column=0)
+    tk.Button(master=manager_main_schedule, text="View detail of flight ", command=view_flight).grid(row=1,column=1)
+    tk.Button(master=manager_main_schedule, text="Switch user ", command=switch_user_admin).grid(row=2,column=1)
+    tk.Button(master=manager_main_schedule, text="Update/add flight ", command=update).grid(row=3,column=1)
+    tk.Button(master=manager_main_schedule, text="Cancel flight ", command=cancel).grid(row=4,column=1)
+    tk.Button(master=manager_main_schedule, text="Exit program ", command=exit).grid(row=5,column=1)
+    manager_main_schedule.mainloop()
+def view():
+    e = 0
+    f = 1
+    view = tk.Tk()
+    view.title("View detail of flight")
+    tk.Label(master=view,text="Flight number-------ETA-------Destination-------Status").grid(row=1, column=0)
+    for i in schedule:
+        e += 1
+        f += 1
+        tk.Label(master=view,text=(i,"-------", schedule[i][0],"-------", schedule[i][1],"-------", schedule[i][2])).grid(row=f, column=0)
+    for i in cancel:
+        e += 1
+        f += 1
+        tk.Label(master=view,text=(i,"-------", cancel[i][0],"-------", cancel[i][1],"-------", cancel[i][2])).grid(row=f, column=0)
+
+def standard_main():
+    def switch_user_standard():
+        standard_main_schedule.destroy()
+        login()
+    
+    standard_main_schedule = tk.Tk()
+    standard_main_schedule.title("Standard user control panel")
+    tk.Button(master)
+    tk.Button(master=standard_main_schedule, text="View detail of flight ", command=view_flight).grid(row=2,column=1)
+    tk.Button(master=standard_main_schedule, text="Switch user ", command=switch_user_admin).grid(row=3,column=1)
+    tk.Button(master=standard_main_schedule, text="Exit program ", command=exit).grid(row=4,column=1)
+    tk.Label(master=standard_main_schedule, text="").grid(row=5, column=0)
+    img = tk.PhotoImage(file="jet.jpg")
+    rp = tk,Label(master=standard_main_schedule, image=img).grid(row=1, column=0)
+    standard_main_schedule.mainloop()
+def login():
+    def user_verification():
+        def password_verification():
+            g = password.get()
+            if check == 1:
+                if admin[h] == g:
+                    login_schedule.destroy()
+                    admin_main_features()
+                    reminder()
+                else:
+                    ad3 = tk.Tk()
+                    ad3.title("Wrong password")
+                    tk.Label(master=ad3, text="Wrong password. Try again").grid(row=1, column=1)
+            elif check == 2:
+                if manager[h] ==g:
+                    login_schedule.destroy()
+                    manager_main()
+                    reminder()
+                else:
+                    ad3 = tk.Tk()
+                    ad3.title("Wrong password")
+                    tk.Label(master=ad3, text="Wrong password. Try again").grid(row=1, column=1)
+            elif check == 3:
+                if admin[h] == g:
+                    login_schedule.destroy()
+                    standard_main_()
+                else:
+                    ad3 = tk.Tk()
+                    ad3.title("Wrong password")
+                    tk.Label(master=ad3, text="Wrong password. Try again").grid(row=1, column=1)
+        h = user_nae.get()
+        if not:
+            ad1 = tk.Tk()
+            ad1.title("Wrong username")
+            tk.Label(master=ad1, text="Username not exist.Try again").grid(row=1, column=1)
+        else:
+            if h in manager:
+                check = 2
+            elif h in admin:
+                check = 1
+            elif h in standard:
+                check = 3
+            
+            tk.label(master=login_schedule, text="Enter password").grid(row=2, column=0)
+            password = tk.Entry(master=login_schedule, show='*')
+            password.grid(row=2,column=1)
+            ad3 = tk.Button(master=login_schedule, text="Confirm password",width=25, command=password_verification).grid(row=2, column=2)
+    login_schedule = tk.Tk()
+    login_schedule.title("Login")
+    tk.Label(master=login_schedule, text="").grid(row=5, column=1)
+    img = tk.PhotoImage(file="jet.jpg")
+    rp = tk.Label(master=login_schedule, image=img).grid(row=0,column=1)
+    tk.Label(master=login_schedule,text="Enter username").grid(row=1,column=0)
+    user_name = tk.Entry(master=login_shcedule)
+    user_name.grid(row=1,column=1)
+    k = tk.Button(master=login_schedule,text="Confirm username",width=25, command=user_verifivation).grid(row=1,column=2)
+    login_schedule.mainloop()
+login()
+
