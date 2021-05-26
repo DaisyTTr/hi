@@ -1,7 +1,7 @@
 import tkinter as tk
 import datetime
 
-admin={}
+admin={ }
 manager={}
 standard={}
 schedule={}
